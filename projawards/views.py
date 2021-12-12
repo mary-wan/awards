@@ -4,11 +4,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .forms import  UserRegisterForm
+from .forms import  UserRegisterForm,PostForm
+from .models import Post,Rating
 
 
 def index(request):
-    return render(request, 'all-awards/home.html')
+    current_user = request.user
+    if request.method == "POST":
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return HttpResponseRedirect(reverse("home"))
+    else:
+        form = PostForm()
+    return render(request, 'all-awards/home.html',{'form':form,'current_user':current_user})
 
 
 def register(request):

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'emoji_picker',
     'social_django',
-    'django_extensions'
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

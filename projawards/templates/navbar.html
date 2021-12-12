@@ -9,6 +9,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <form class="form-inline" action=" " enctype="multipart/form-data" role="search" aria-label="Search">
+        {% csrf_token %}
            <input autocomplete="off" id="searching" class="form-control input-sm search" 
             placeholder="&#xF002; Search"  style="font-family:Arial, FontAwesome" name="username">
           <i class="spinner "></i>
@@ -17,7 +18,7 @@
 
         {% if user.is_authenticated %}
         <li class="nav-item active">
-            <a href="{% url 'home' %}" class=" btn btn-sm btn-color site mr-2"> SUMBIT YOUR SITE!</a>
+            <a data-toggle="modal" data-target="#post-upload" class=" btn btn-sm btn-color site mr-2"> SUMBIT YOUR SITE!</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

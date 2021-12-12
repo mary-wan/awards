@@ -15,9 +15,6 @@ body{
     padding-top: 1px !important;
     padding-bottom: 1px !important;
 }
-/* .navbar-brand{
-    font-family: 'Aladin', sans-serif;
-} */
 .profile-img{
     padding: 0% !important;
     margin: 0% !important;
@@ -161,8 +158,17 @@ body{
   .form-text{
     display:none;
 }
-  
- 
+#id_photo{
+  background-color: #49c5b6 !important;
+}
+
+
+
+
+
+
+
+
 
 
 
