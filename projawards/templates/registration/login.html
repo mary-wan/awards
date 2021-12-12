@@ -3,11 +3,11 @@
 {% load crispy_forms_tags%}
 {%load static%}
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-3">
   <div class="row">
       <div class="col-md-2"></div>
      
-      <div class="col-md-7 col-sm-8 mt-4">
+      <div class="col-md-7 mt-4">
           <div class="card pb-5 pt-2">
               <div class="card-body pb-1 mr-3 ml-3">
                 <h6 class="text-muted intro pb-4">Sign in to continue<span class="right">Not a member yet? <a href="{%url 'register'%}" class="link-color font-weight-bold">Register now</a> </span> </h6>
@@ -15,17 +15,15 @@
                   <form action="" method="post" class="mb-2" >
                       {% csrf_token%}
                       {{ form|crispy}}
-                      <button type="submit" class="btn btn-color btn-lg login text-white"> LOGIN NOW</button>
+                      <button type="submit" class="btn btn-color login text-white"> LOGIN NOW</button>
                   </form>
                  <small class="mb-2 center-txt"><a href="" class="text-center link-color">Forgot your password? </a></small><br>
                                    
               </div>
               <p class="font-weight-bold ml-5 mt-3 pb-1">Or sign in with</p>
               <span>
-              <!-- <a href="{%url 'register'%}" class="btn btn-lg text-white btn-info ml-5"><i class="fab fa-google"></i> Google</a> -->
               <a href="{%url 'register'%}"><button type="button" class="login-with-google-btn ml-5 mb-1" >Sign in with Google</button></a>
               <a href="{%url 'register'%}"><button class="loginBtn loginBtn--facebook ml-5 mb-1">Login with Facebook</button></a>
-              <!-- <a href="{%url 'register'%}"><img src="{% static 'photos/facebook.png' %}" height="50" width="140"  alt="" class="googlr ml-5"></a> -->
             </span>
             
               

@@ -4,20 +4,24 @@
 {% load static %}
 {% block content %}
 
-<div class="container mt-4">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-7">
-            <div class="card">
+            <div class="card pb-3">
                 <div class="card-body mb-2 mr-3 ml-3">
-                    <h6 class="text-muted pb-4">Register with <span class="right">Are you a member? <a href="{%url 'login'%}" class="link-color font-weight-bold">Login now.</a> </span> </h6>
+                    <h6 class="text-muted pb-4">Register  <span class="right-1">Are you a member? <a href="{%url 'login'%}" class="link-color font-weight-bold">Login now.</a> </span> </h6>
                     <form action="" method="post">
                         {% csrf_token%}
                         {{ form|crispy}}
-                        <button type="submit" class="btn btn-color text-white btn-lg login">CREATE YOUR ACCOUNT</button>
+                        <button type="submit" class="btn btn-color text-white login">CREATE YOUR ACCOUNT</button>
                     </form>
                 </div>
-                <!-- <small class="text-muted text-center mb-2"> Have an account? <a href="{%url 'login'%}">Log in</a></small>   -->
+                <p class="font-weight-bold ml-5 mt-3 pb-1">Or Register in with</p>
+                <span>
+                <a href="{%url 'register'%}"><button type="button" class="login-with-google-btn ml-5 mb-1" >Continue with Google</button></a>
+                <a href="{%url 'register'%}"><button class="loginBtn loginBtn--facebook ml-5 mb-1">Continue Facebook</button></a>
+              </span>
             </div>
         </div>
 

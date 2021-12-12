@@ -1,5 +1,5 @@
 {%load static %}
-<div class="navbar sticky-top bg-dark navbar-dark mb-2 navbar-expand-lg">
+<div class="navbar sticky-top bg-light navbar-light mb-2 navbar-expand-lg">
   <nav class="container">
     <span class="navbar-brand m-0 pt-0 pb-0">
         <a class="navbar-brand" href="{%url 'home'%}">Awwards</a>
@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="mb-0 ml-auto mr-auto" id="searchform" action=" " enctype="multipart/form-data" role="search">
+      <form class="form-inline" action=" " enctype="multipart/form-data" role="search" aria-label="Search">
            <input autocomplete="off" id="searching" class="form-control input-sm search" 
             placeholder="&#xF002; Search"  style="font-family:Arial, FontAwesome" name="username">
           <i class="spinner "></i>
@@ -17,22 +17,24 @@
 
         {% if user.is_authenticated %}
         <li class="nav-item active">
-            <a href="{% url 'home' %}" class=" btn btn-sm btn-info mt-2 mr-2"> SUMBIT YOUR SITE!</a>
+            <a href="{% url 'home' %}" class=" btn btn-sm btn-color site mr-2"> SUMBIT YOUR SITE!</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="{% static 'photos/facebook.png' %}"  alt= "" class="rounded-circle user">
+              <img src="{% static 'photos/default.jpg' %}"  alt= "" class="rounded-circle user profile-img"></a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a href="" class="nav-link text-dark dropdown-item"><i class="fas fa-user"></i> Profile</a>
               <!-- <a href="/accounts/password/change" class="nav-link text-dark dropdown-item"><i class="fas fa-cog"></i> Settings</a> -->
-              <a href="/logout" class="nav-link text-dark dropdown-item">Logout</a>
+              <a href="/logout" class="nav-link text-dark dropdown-item">Logout <i class="fas fa-sign-out-alt"></i></a>
               
             </div>
           </li>
         {% else %}
-        <a href="{% url 'login' %}" class=" btn btn-sm btn-info mr-2"> REGISTER/LOGIN </a>
+        <li class="nav-item">
+            <a href="{% url 'login' %}" class=" btn btn-sm btn-color mr-2 mt-2 mb-1"> REGISTER/LOGIN </a>
+        </li>
         <li class="nav-item active">
-            <a href="{% url 'home' %}" class=" btn btn-sm btn-info"> SUMBIT YOUR SITE!</a>
+            <a href="{% url 'home' %}" class=" btn btn-sm btn-color mt-2 mb-1"> SUMBIT YOUR SITE!</a>
         </li>
         <!-- <li class="nav-item active "><a class="nav-link mt-1 mb-1" href="{%url 'register'%}">Sign up</a></li> -->
         {%endif%}
