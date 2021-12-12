@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato&display=swap');
+
+
+body{
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    overflow-x:hidden !important;
+}
+.navbar{
+    background-color: #f4f7f6 !important;
+}
+.btn-color{
+    background-color: #49c5b6 !important;
+    font-size: 15px !important;
+}
+.link-color{
+    color: #49c5b6 !important;
+   
+}
+.link-color:hover {
+    color: green !important;
+    text-decoration: none;
+}
+.btn-color:hover{
+    background-color: green !important;
+}
+.login{
+    width: 100%;
+}

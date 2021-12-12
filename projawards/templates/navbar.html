@@ -1,0 +1,34 @@
+{%load static %}
+<div class="navbar sticky-top bg-light navbar-light mb-2 navbar-expand-lg">
+  <nav class="container">
+    <span class="navbar-brand m-0 pt-0 pb-0">
+        <a class="navbar-brand" href="/">Awwards</a>
+    </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="mb-0 ml-auto mr-auto" id="searchform" action=" " enctype="multipart/form-data" role="search">
+           <input autocomplete="off" id="searching" class="form-control input-sm search" 
+            placeholder="&#xF002; Search"  style="font-family:Arial, FontAwesome" name="username">
+          <i class="spinner "></i>
+      </form>
+      <ul class="nav navbar-nav navbar-right ml-auto mr-5">
+
+        <li class="nav-item active">
+          <!-- <a href="{%url 'home'%}">Home</a> -->
+          <a class="nav-link" href="{%url 'home'%}">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{%url 'home'%}">Post</a>
+        </li>
+        {% else %}
+        <li class="nav-item active "><a class="nav-link mt-1 mb-1" href="{%url 'login'%}">REGISTER/LOG IN</a></li>
+        <!-- <li class="nav-item active "><a class="nav-link mt-1 mb-1" href="{%url 'register'%}">Sign up</a></li> -->
+        {%endif%}
+       
+    </ul>
+    </div>
+  </nav>
+</div>
