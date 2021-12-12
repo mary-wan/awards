@@ -1,8 +1,8 @@
 {%load static %}
-<div class="navbar sticky-top bg-light navbar-light mb-2 navbar-expand-lg">
+<div class="navbar sticky-top bg-dark navbar-dark mb-2 navbar-expand-lg">
   <nav class="container">
     <span class="navbar-brand m-0 pt-0 pb-0">
-        <a class="navbar-brand" href="/">Awwards</a>
+        <a class="navbar-brand" href="{%url 'home'%}">Awwards</a>
     </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,16 +15,25 @@
       </form>
       <ul class="nav navbar-nav navbar-right ml-auto mr-5">
 
-        <li class="nav-item active">
-          <!-- <a href="{%url 'home'%}">Home</a> -->
-          <a class="nav-link" href="{%url 'home'%}">Home</a>
-        </li>
         {% if user.is_authenticated %}
         <li class="nav-item active">
-            <a class="nav-link" href="{%url 'home'%}">Post</a>
+            <a href="{% url 'home' %}" class=" btn btn-sm btn-info mt-2 mr-2"> SUMBIT YOUR SITE!</a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="{% static 'photos/facebook.png' %}"  alt= "" class="rounded-circle user">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a href="" class="nav-link text-dark dropdown-item"><i class="fas fa-user"></i> Profile</a>
+              <!-- <a href="/accounts/password/change" class="nav-link text-dark dropdown-item"><i class="fas fa-cog"></i> Settings</a> -->
+              <a href="/logout" class="nav-link text-dark dropdown-item">Logout</a>
+              
+            </div>
+          </li>
         {% else %}
-        <li class="nav-item active "><a class="nav-link mt-1 mb-1" href="{%url 'login'%}">REGISTER/LOG IN</a></li>
+        <a href="{% url 'login' %}" class=" btn btn-sm btn-info mr-2"> REGISTER/LOGIN </a>
+        <li class="nav-item active">
+            <a href="{% url 'home' %}" class=" btn btn-sm btn-info"> SUMBIT YOUR SITE!</a>
+        </li>
         <!-- <li class="nav-item active "><a class="nav-link mt-1 mb-1" href="{%url 'register'%}">Sign up</a></li> -->
         {%endif%}
        
