@@ -5,7 +5,7 @@
 {% block content %} 
 {{ block.super}}
 
-<div class="container mt-4">
+<div class="container mt-0">
     <div class="col-md-7">
         <div class="row">
             <div class="modal fade" id="post-upload" tabindex="-1" role="dialog"
@@ -36,6 +36,35 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="container-fluid m-0 p-0 img-holder" style="background-image:url( {{random_post.photo.url}})" >
+    <!-- <img src=" {{random_post.photo.url}}" alt=""  height="400"  class="img-display"> -->
+    <div class="overlay">
+        <div class="container text-center pt-5">
+            <p>{{random_post.title}}</p>
+        </div>
+        
+    </div>
+   
+</div>
+<div class="container">
+    <div class="row">
+    {% for post in posts %}
+    <div class="col-md-4 mt-4">
+        <div class="card">
+            <img class="card-img-top" src="{{ post.photo.url }}" alt="Card image cap" height="250">
+            <hr>
+            <div class="card-body pt-0">
+              <h6 class="card-title text-sm"><a href="">{{post.title}}</a> <a
+                class="btn btn-sm btn-outline-info ml-4" href="{{ post.url }}"> View</a></h6>
+            </div>
+            <div class="card-footer">
+                <small>  <img src="{% static 'photos/default.jpg' %}"  alt= "" class="rounded-circle user profile-img"></a> {{post.user.username|title}} <span style="float:right">{{post.upload_date|date}}</span></small>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
     </div>
 </div>
 {%endblock%}

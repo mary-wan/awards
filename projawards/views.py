@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from .forms import  UserRegisterForm,PostForm
 from .models import Post,Rating
+import random
 
 
 def index(request):
@@ -19,7 +20,16 @@ def index(request):
             return HttpResponseRedirect(reverse("home"))
     else:
         form = PostForm()
-    return render(request, 'all-awards/home.html',{'form':form,'current_user':current_user})
+    
+    try:
+        posts = Post.objects.all()
+        posts = posts[::-1]
+        post_index = random.randint(0, len(posts)-1)
+        random_post = posts[post_index]
+        print(random_post.photo)
+    except Post.DoesNotExist:
+        posts = None
+    return render(request, 'all-awards/home.html',{'form':form,'current_user':current_user,'random_post': random_post,'posts':posts})
 
 
 def register(request):

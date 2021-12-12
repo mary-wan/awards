@@ -11,7 +11,7 @@ body{
     background-color: #f4f7f6 !important;
 }
 .navbar{
-    /* background-color: white !important; */
+    /* background-color: black !important; */
     padding-top: 1px !important;
     padding-bottom: 1px !important;
 }
@@ -161,8 +161,17 @@ body{
 #id_photo{
   background-color: #49c5b6 !important;
 }
-
-
+.img-holder{
+  width: 100% !important;
+  background-size: 100% 100%;
+  height: 480px;
+  background-repeat: no-repeat;
+  color: white;
+}
+.overlay{
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 480px;
+}
 
 
 
