@@ -97,7 +97,6 @@ def user_profile(request, username):
     
     return render(request, 'all-awards/poster.html', {'user_poster': user_poster,'user_posts':user_posts})
 
-
 @login_required(login_url='login')
 def profile(request, username):
     posts = request.user.posts.all()
@@ -121,4 +120,3 @@ def search_project(request):
         posts = Post.objects.filter(title__icontains=title).all()
 
     return render(request, 'all-awards/search.html', {'posts': posts})
-   
