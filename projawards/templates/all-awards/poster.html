@@ -37,7 +37,7 @@
     <div class="row">
     {% for post in user_posts %}                
         <div class="col-sm-8 col-lg-3 mb-3 imgdisplay">
-            <a href="{% url 'project' post.title %}"><img src="{{post.photo.url}}" alt=" " class="card-img photo" height="200"></a>
+            <a href="{% url 'project' post.title %}"><img src="{{post.photo.url}}" alt="" class="card-img photo" height="200"></a>
             
         </div>            
     {% endfor %}
