@@ -39,7 +39,7 @@
                 <a href="{{ post.url }}" style="float:right" class="btn btn-sm btn-color mr-4"> Visit Site </a></h5>
             <p>{{ post.description }}</p>
             <hr>
-            <p class="card-text "> <a href="{% url 'user_profile' post.user.username  %}"><img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img">
+            <p class="card-text "> <a href="{% url 'user_profile' post.user.username  %}"><img src="{{post.user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img">
                  {{post.user.username|title}} </a><span style="float:right">{{post.upload_date|date}}</span>
             </p>
             <div class="row mt-5">

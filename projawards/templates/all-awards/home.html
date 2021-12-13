@@ -95,7 +95,7 @@
             </h6>
             </div>
             <div class="card-footer">
-                <a href="{% url 'user_profile' post.user.username  %}"> <img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img"> {{post.user.username|title}}</a> <span style="float:right">{{post.upload_date|date}}</span>
+                <a href="{% url 'user_profile' post.user.username  %}"> <img src="{{post.user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img"> {{post.user.username|title}}</a> <span style="float:right">{{post.upload_date|date}}</span>
             </div>
           </div>
     </div>
