@@ -5,7 +5,7 @@
 {% block content %} 
 {{ block.super}}
 <div class="container mt-3">
-    <p class="mb-4 mt-4">{{ post.title }} by {{ post.user.username }} </p> <br>
+    <p class="mb-4 mt-4">{{ post.title|title }} by {{ post.user.username|title  }} </p> <br>
 
     <div class="card">
         <div class="" style="background-image:url( {{post.photo.url}})">

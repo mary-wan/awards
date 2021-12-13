@@ -70,19 +70,14 @@
                             <span class="descr-rate">Score</span>
                         </div> 
                     </div>
-                    <!-- <div id="usability1" class="mx-auto col-md-3">{{ rating.usability_average }}<br>
-                        <span class="descr-rate">usability</span>
-                    </div>
-                    <div id="content1" class="col-md-3">{{ rating.content_average }}<br>
-                        <span class="descr-rate">content</span>
-                    </div> -->
                 </div>
                     {% endif %}
                     {% endfor %}
                 </div>
                 <div class="col-md-3"></div>
           </div>
-        </div>
+          <a href="{{random_post.url}}" class="btn btn-success radius m-5">Visit Site</a>
+    </div>
         
     </div>
    
@@ -95,8 +90,8 @@
             <a href="{% url 'project' post.title %}"><img class="card-img-top" src="{{ post.photo.url }}" alt="Card image cap" height="250"></a>
             
             <div class="card-body pt-5">
-              <h6 class="card-title text-sm"><a href="{% url 'project' post.title %}">{{post.title}}</a>
-                 <a class="btn btn-sm btn-outline-info ml-4" href="{% url 'project' post.title %}"> VOTE</a>
+              <h6 class="card-title text-sm"><a href="{% url 'project' post.title %}" class="link-color font-weight-bold">{{post.title|title}}</a>
+                 <a class="btn btn-sm btn-outline ml-4" href="{% url 'project' post.title %}"> VOTE</a>
             </h6>
             </div>
             <div class="card-footer">

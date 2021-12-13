@@ -269,8 +269,27 @@ a:hover{
   display: flex;
   clear: right;
 }
-
-
+.btn-outline {
+  border: 2px solid #49c5b6;
+  background-color: white;
+  color: #49c5b6;
+  cursor: pointer;
+  margin-left: 30% !important;
+  border-radius: 5px;
+}
+.radius{
+  font-family: Raleway-SemiBold;
+  font-size: 13px;
+  color: rgba(103, 192, 103, 0.75);
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgba(103, 192, 103, 0.75);
+  border-radius: 40px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
 
 
