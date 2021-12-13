@@ -23,6 +23,11 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('photo', 'title', 'url', 'description', 'technologies_used',)
         
-    # def __init__(self, *args, **kwargs):
-    #     super(PostForm, self).__init__(*args, **kwargs)
-    #     self.fields['photo'].label = ""
+   
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']
+        
+        

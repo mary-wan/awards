@@ -39,10 +39,31 @@
     </div>
 </div>
 <div class="container-fluid m-0 p-0 img-holder" style="background-image:url( {{random_post.photo.url}})" >
-    <!-- <img src=" {{random_post.photo.url}}" alt=""  height="400"  class="img-display"> -->
     <div class="overlay">
         <div class="container text-center pt-5">
             <p>{{random_post.title}}</p>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="margin-top:10%">
+                    <!-- <h1>{{random_post.title}}</h1> -->
+                    {% for rating in random_post.ratings.all %}
+                    {% if forloop.counter is random_post.ratings.all.count %}
+                    <div class="row">
+                    <div id="design1" class="col-md-3">{{ rating.design_average}}<br>
+                        <span class="descr-rate">design</span>
+                    </div>
+                    <div id="usability1" class="mx-auto col-md-3">{{ rating.usability_average }}<br>
+                        <span class="descr-rate">usability</span>
+                    </div>
+                    <div id="content1" class="col-md-3">{{ rating.content_average }}<br>
+                        <span class="descr-rate">content</span>
+                    </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-3"></div>
+          </div>
         </div>
         
     </div>
@@ -53,14 +74,15 @@
     {% for post in posts %}
     <div class="col-md-4 mt-4">
         <div class="card">
-            <img class="card-img-top" src="{{ post.photo.url }}" alt="Card image cap" height="250">
-            <hr>
-            <div class="card-body pt-0">
-              <h6 class="card-title text-sm"><a href="">{{post.title}}</a> <a
-                class="btn btn-sm btn-outline-info ml-4" href="{{ post.url }}"> View</a></h6>
+            <a href="{% url 'project' post.title %}"><img class="card-img-top" src="{{ post.photo.url }}" alt="Card image cap" height="250"></a>
+            
+            <div class="card-body pt-5">
+              <h6 class="card-title text-sm"><a href="{% url 'project' post.title %}">{{post.title}}</a>
+                 <a class="btn btn-sm btn-outline-info ml-4" href="{% url 'project' post.title %}"> VOTE</a>
+            </h6>
             </div>
             <div class="card-footer">
-                <small>  <img src="{% static 'photos/default.jpg' %}"  alt= "" class="rounded-circle user profile-img"></a> {{post.user.username|title}} <span style="float:right">{{post.upload_date|date}}</span></small>
+                <a href="{% url 'user_profile' post.user.username  %}"> <img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img"> {{post.user.username}}</a> <span style="float:right">{{post.upload_date|date}}</span>
             </div>
           </div>
     </div>

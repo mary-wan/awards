@@ -1,0 +1,90 @@
+{%extends 'all-awards/base.html'%}
+{% load bootstrap4 %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %} 
+{{ block.super}}
+<div class="container mt-3">
+    <p class="mb-4 mt-4">{{ post.title }} by {{ post.user.username }} </p> <br>
+
+    <div class="card">
+        <div class="" style="background-image:url( {{post.photo.url}})">
+            <img class="card-img-top" style="visibility:hidden" width="100%"
+                 src="{{ post.photo.url }}-/crop/1440x720/center/-/quality/lightest/" alt="{{photo.title}}">
+                <div class="overlay1">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 d-flex flex-row mx-auto " style="margin-top:20%">
+                                {% for rating in post.ratings.all %}
+                                {% if forloop.counter is post.ratings.all.count %}
+                                <div id="design">{{ rating.design_average}}<br>
+                                    <span class="descr-rate">design</span>
+                                </div>
+                                <div id="usability" class="mx-auto">{{ rating.usability_average }}<br>
+                                    <span class="descr-rate">usability</span>
+                                </div>
+                                <div id="content">{{ rating.content_average }}<br>
+                                    <span class="descr-rate">content</span>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-3"></div>
+                      </div>
+                </div>
+            </a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><strong>{{post.title|title}}</strong>
+                <a href="{{ post.url }}" style="float:right" class="btn btn-sm btn-color mr-4"> Visit Site </a></h5>
+            <p>by <span><a href="" id="usern" class="mr-2">{{ post.user.username }}</a></span>
+            </p>
+            <p>{{ post.description }}</p>
+            <hr>
+            <p class="card-text "><img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img">
+                By {{post.user.username|title}} <span style="float:right">{{post.upload_date|date}}</span>
+            </p>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 mt-4">
+                    <!-- <h3 class="">Rating Scores</h3> -->
+                    {% for rating in post.ratings.all %}
+                    {% if forloop.counter is post.ratings.all.count %}
+                    <a class="btn btn-color btn-sm" ><h5>{{ rating.score }}</h5>
+                        <span class="">Average Score</span>
+                    </a>
+                    <a class="btn btn-outline-success btn-sm" ><h5>{{ rating.design_average }}</h5>
+                        <span class="">Design Average</span>
+                    </a>
+                    <a class="btn btn-outline-primary btn-sm" ><h5>{{ rating.usability_average }}</h5>
+                        <span class="">Usability Average</span>
+                    </a>
+                    <a class="btn btn-outline-danger btn-sm" ><h5>{{ rating.content_average }}</h5>
+                        <span class="">Content Average</span>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            {%if current_user.username != post.user.username%}
+            {% if rating_status %}
+            <h6 class="alert alert-info mt-2 text-center">You have already voted</h6>
+            {% else %}
+            {% if user.is_authenticated %}
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{rating_form|crispy}}
+                <button class="btn btn-sm btn-info">Rate</button>
+            </form>
+            {% endif %}
+            {% endif %}
+            {%else%}
+            <h6 class="alert alert-info mt-2 text-center">You cannot vote for your own project</h6>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{%endblock%}
