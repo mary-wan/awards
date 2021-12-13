@@ -66,33 +66,26 @@ def project(request, post):
             rate_result.save()
             post_ratings = Rating.objects.filter(post=post)
 
-            design_ratings = [d.design for d in post_ratings]
-            design_average = sum(design_ratings) / len(design_ratings)
+            design_rate = [d.design for d in post_ratings]
+            design_av = sum(design_rate) / len(design_rate)
 
-            usability_ratings = [us.usability for us in post_ratings]
-            usability_average = sum(usability_ratings) / len(usability_ratings)
+            usability_rate = [us.usability for us in post_ratings]
+            usability_av = sum(usability_rate) / len(usability_rate)
 
-            content_ratings = [content.content for content in post_ratings]
-            content_average = sum(content_ratings) / len(content_ratings)
+            content_rate = [content.content for content in post_ratings]
+            content_av = sum(content_rate) / len(content_rate)
 
-            score = (design_average + usability_average + content_average) / 3
+            score = (design_av + usability_av + content_av) / 3
             print(score)
-            rate_result.design_average = round(design_average, 2)
-            rate_result.usability_average = round(usability_average, 2)
-            rate_result.content_average = round(content_average, 2)
+            rate_result.design_average = round(design_av, 2)
+            rate_result.usability_average = round(usability_av, 2)
+            rate_result.content_average = round(content_av, 2)
             rate_result.score = round(score, 2)
             rate_result.save()
             return HttpResponseRedirect(request.path_info)
     else:
         form = RatingForm()
-    params = {
-        'post': post,
-        'rating_form': form,
-        'rating_status': rating_status,
-        'current_user':current_user
-
-    }
-    return render(request, 'all-awards/project.html', params)
+    return render(request, 'all-awards/project.html', {'post': post,'rating_form': form,'rating_status': rating_status,'current_user':current_user})
 
 @login_required(login_url='login')
 def user_profile(request, username):
