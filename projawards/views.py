@@ -97,14 +97,6 @@ def user_profile(request, username):
     
     return render(request, 'all-awards/poster.html', {'user_poster': user_poster,'user_posts':user_posts})
 
-@login_required(login_url='login')
-def search_project(request):
-    if request.method == 'GET':
-        title = request.GET.get("title")
-        posts = Post.objects.filter(title__icontains=title).all()
-
-    return render(request, 'all-awards/search.html', {'posts': posts})
-   
 
 @login_required(login_url='login')
 def profile(request, username):
@@ -121,3 +113,12 @@ def profile(request, username):
         profile_form = UpdateUserProfileForm(instance=request.user.profile)
 
     return render(request, 'all-awards/profile.html', {'user_form':user_form,'profile_form':profile_form,'posts':posts})
+
+@login_required(login_url='login')
+def search_project(request):
+    if request.method == 'GET':
+        title = request.GET.get("title")
+        posts = Post.objects.filter(title__icontains=title).all()
+
+    return render(request, 'all-awards/search.html', {'posts': posts})
+   
