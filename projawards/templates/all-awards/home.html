@@ -40,25 +40,43 @@
 </div>
 <div class="container-fluid m-0 p-0 img-holder" style="background-image:url( {{random_post.photo.url}})" >
     <div class="overlay">
-        <div class="container text-center pt-5">
-            <p>{{random_post.title}}</p>
+        <div class="pt-3">
+            <span class="m-3 font-weight-bold" style="font-size:20px ;">Trending Site: </span>{% now "jS F Y " %}
+        </div>
+        
+        <div class="container pt-5">
+            <div class="text-center">
+                <h1> <a href="{% url 'project' random_post.title %}" class="text-white">{{random_post.title|title}}</a></h1>
+                <h5 class="pt-2">By  <span><a href="{% url 'user_profile' random_post.user.username  %}" class="link-color">{{random_post.user.username|title}}</a></span></h5>
+            </div>
+            
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-6" style="margin-top:10%">
-                    <!-- <h1>{{random_post.title}}</h1> -->
+                <div class="col-md-6 mt-4" >
+                    
                     {% for rating in random_post.ratings.all %}
                     {% if forloop.counter is random_post.ratings.all.count %}
-                    <div class="row">
-                    <div id="design1" class="col-md-3">{{ rating.design_average}}<br>
+                    <div class="rate-home">
+                        <div id="design1" class="rounded-circle">{{ rating.design_average}}<br>
                         <span class="descr-rate">design</span>
+                        </div>                  
+                        <div id="usability1" class="ml-3 mr-3">{{ rating.usability_average }}<br>
+                            <span class="descr-rate">usability</span>
+                        </div>
+                        <div id="content1" class="">{{ rating.content_average }}<br>
+                            <span class="descr-rate">content</span>
+                        </div> 
+                        <div id="average1" class=" ml-3">{{rating.score}}<br>
+                            <span class="descr-rate">Score</span>
+                        </div> 
                     </div>
-                    <div id="usability1" class="mx-auto col-md-3">{{ rating.usability_average }}<br>
+                    <!-- <div id="usability1" class="mx-auto col-md-3">{{ rating.usability_average }}<br>
                         <span class="descr-rate">usability</span>
                     </div>
                     <div id="content1" class="col-md-3">{{ rating.content_average }}<br>
                         <span class="descr-rate">content</span>
-                    </div>
-                    </div>
+                    </div> -->
+                </div>
                     {% endif %}
                     {% endfor %}
                 </div>
@@ -82,7 +100,7 @@
             </h6>
             </div>
             <div class="card-footer">
-                <a href="{% url 'user_profile' post.user.username  %}"> <img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img"> {{post.user.username}}</a> <span style="float:right">{{post.upload_date|date}}</span>
+                <a href="{% url 'user_profile' post.user.username  %}"> <img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img"> {{post.user.username|title}}</a> <span style="float:right">{{post.upload_date|date}}</span>
             </div>
           </div>
     </div>
