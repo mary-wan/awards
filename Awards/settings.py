@@ -46,8 +46,8 @@ else:
    }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-# DATABASES = { 'default': dj_database_url.config() }
+# DATABASES['default'].update(db_from_env)
+DATABASES = { 'default': dj_database_url.config() }
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -198,3 +198,20 @@ REST_FRAMEWORK = {
 }
 
 django_heroku.settings(locals())
+
+AUTHENTICATION_BACKENDS = [
+  
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    
+
+   
+    'social_core.backends.facebook.FacebookOAuth2',
+
+   
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY='630368025043548'
+SOCIAL_AUTH_FACEBOOK_SECRET ='7e2f6260c19b87910735be948352dc7a'
