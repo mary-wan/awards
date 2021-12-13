@@ -11,11 +11,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline" action=" " enctype="multipart/form-data" role="search" aria-label="Search">
-        {% csrf_token %}
+      <form class="form-inline" action=" {% url 'search' %}" enctype="multipart/form-data" role="search" aria-label="Search">
            <input autocomplete="off" id="searching" class="form-control input-sm search" 
-            placeholder="&#xF002; Search"  style="font-family:Arial, FontAwesome" name="username">
-          <i class="spinner "></i>
+            placeholder="&#xF002; search project"  style="font-family:Arial, FontAwesome" name="title">
+
       </form>
       <ul class="nav navbar-nav navbar-right ml-auto mr-5">
 

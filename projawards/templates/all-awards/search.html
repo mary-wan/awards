@@ -1,0 +1,35 @@
+{%extends 'all-awards/base.html'%}
+{% load bootstrap4 %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %} 
+{{ block.super}}
+
+<div class="container">
+    <div class="row">
+    {% if posts%}
+    {% for post in posts %}
+    <div class="col-md-4 mt-4">
+        <div class="card">
+            <a href="{% url 'project' post.title %}"><img class="card-img-top" src="{{ post.photo.url }}" alt="Card image cap" height="250"></a>
+            
+            <div class="card-body pt-5">
+              <h6 class="card-title text-sm"><a href="{% url 'project' post.title %}" class="link-color font-weight-bold">{{post.title|title}}</a>
+                 <a class="btn btn-sm btn-outline ml-4" href="{% url 'project' post.title %}"> VOTE</a>
+            </h6>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'user_profile' post.user.username  %}"> <img src="{{post.user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img"> {{post.user.username|title}}</a> <span style="float:right">{{post.upload_date|date}}</span>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+    {%else%}
+    <div class="col-md-12 text-center">
+        <h4 class="mt-3 alert alert-warning">Project Not found </h4>
+    </div>
+    {%endif%}
+    </div>
+</div>
+
+{%endblock%}
