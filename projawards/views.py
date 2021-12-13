@@ -1,12 +1,16 @@
-from django.http  import HttpResponse,Http404,HttpResponseRedirect
+from django.http  import HttpResponseRedirect,Http404
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .forms import  UpdateUserForm, UpdateUserProfileForm, UserRegisterForm,PostForm,RatingForm
-from .models import Post,Rating
+from .models import Post, Profile,Rating
 import random
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import PostSerializer,ProfileSerializer
+from rest_framework import status
+from .permissions import IsAdminOrReadOnly
 
 
 def index(request):
@@ -120,3 +124,56 @@ def search_project(request):
         posts = Post.objects.filter(title__icontains=title).all()
 
     return render(request, 'all-awards/search.html', {'posts': posts})
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_merch = Post.objects.all()
+        serializers = ProfileSerializer(all_merch, many=True)
+        return Response(serializers.data)
+    
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class ProfileDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_merch(self, pk):
+        try:
+            return Profile.objects.get(pk=pk)
+        except Profile.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        serializers = ProfileSerializer(merch)
+        return Response(serializers.data)
+
+class PostList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_merch = Post.objects.all()
+        serializers = PostSerializer(all_merch, many=True)
+        return Response(serializers.data)
+    
+    def post(self, request, format=None):
+        serializers = PostSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class PostDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_merch(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        serializers = PostSerializer(merch)
+        return Response(serializers.data)
