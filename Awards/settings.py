@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'emoji_picker',
     'social_django',
     'django_extensions',
+    'phone_field'
 ]
 
 MIDDLEWARE = [

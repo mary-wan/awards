@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .forms import  UserRegisterForm,PostForm,RatingForm
+from .forms import  UpdateUserForm, UpdateUserProfileForm, UserRegisterForm,PostForm,RatingForm
 from .models import Post,Rating
 import random
 
@@ -96,3 +96,19 @@ def user_profile(request, username):
     
     
     return render(request, 'all-awards/poster.html', {'user_poster': user_poster,'user_posts':user_posts})
+
+@login_required(login_url='login')
+def profile(request, username):
+    posts = request.user.posts.all()
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateUserProfileForm()
+
+    return render(request, 'all-awards/profile.html', {'user_form':user_form,'profile_form':profile_form,'posts':posts})

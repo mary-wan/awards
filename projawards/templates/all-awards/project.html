@@ -37,14 +37,12 @@
         <div class="card-body">
             <h5 class="card-title"><strong>{{post.title|title}}</strong>
                 <a href="{{ post.url }}" style="float:right" class="btn btn-sm btn-color mr-4"> Visit Site </a></h5>
-            <p>by <span><a href="" id="usern" class="mr-2">{{ post.user.username }}</a></span>
-            </p>
             <p>{{ post.description }}</p>
             <hr>
-            <p class="card-text "><img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img">
-                By {{post.user.username|title}} <span style="float:right">{{post.upload_date|date}}</span>
+            <p class="card-text "> <a href="{% url 'user_profile' post.user.username  %}"><img src="{{user.profile.profile_pic.url}}"  alt= "" class="rounded-circle user profile-img">
+                 {{post.user.username|title}} </a><span style="float:right">{{post.upload_date|date}}</span>
             </p>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-2"></div>
                 <div class="col-md-8 mt-4">
                     <!-- <h3 class="">Rating Scores</h3> -->
