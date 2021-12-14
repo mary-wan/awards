@@ -209,9 +209,13 @@ AUTHENTICATION_BACKENDS = [
 
    
     'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
 
    
 ]
 
 SOCIAL_AUTH_FACEBOOK_KEY='630368025043548'
 SOCIAL_AUTH_FACEBOOK_SECRET ='7e2f6260c19b87910735be948352dc7a'
+
+SOCIAL_AUTH_GOOGLE_0AUTH2_KEY='298730413867-0ai6lh9eso43aommoljf4a2v9ic5dlkl.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_0AUTH2_SECRET ='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'
