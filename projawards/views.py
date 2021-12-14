@@ -217,11 +217,13 @@ def search_project(request):
     
     
 class ProfileViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAdminOrReadOnly,)
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAdminOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
