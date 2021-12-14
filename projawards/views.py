@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from .serializers import PostSerializer,ProfileSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+from rest_framework import viewsets
 
 
 def index(request):
@@ -161,55 +162,66 @@ def search_project(request):
 
     return render(request, 'all-awards/search.html', {'posts': posts})
 
-class ProfileList(APIView):
-    def get(self, request, format=None):
-        all_merch = Post.objects.all()
-        serializers = ProfileSerializer(all_merch, many=True)
-        return Response(serializers.data)
+# class ProfileList(APIView):
+#     def get(self, request, format=None):
+#         all_merch = Post.objects.all()
+#         serializers = ProfileSerializer(all_merch, many=True)
+#         return Response(serializers.data)
     
-    def post(self, request, format=None):
-        serializers = ProfileSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, format=None):
+#         serializers = ProfileSerializer(data=request.data)
+#         if serializers.is_valid():
+#             serializers.save()
+#             return Response(serializers.data, status=status.HTTP_201_CREATED)
+#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class ProfileDescription(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    def get_merch(self, pk):
-        try:
-            return Profile.objects.get(pk=pk)
-        except Profile.DoesNotExist:
-            return Http404
+# class ProfileDescription(APIView):
+#     permission_classes = (IsAdminOrReadOnly,)
+#     def get_merch(self, pk):
+#         try:
+#             return Profile.objects.get(pk=pk)
+#         except Profile.DoesNotExist:
+#             return Http404
 
-    def get(self, request, pk, format=None):
-        merch = self.get_merch(pk)
-        serializers = ProfileSerializer(merch)
-        return Response(serializers.data)
+#     def get(self, request, pk, format=None):
+#         merch = self.get_merch(pk)
+#         serializers = ProfileSerializer(merch)
+#         return Response(serializers.data)
 
-class PostList(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    def get(self, request, format=None):
-        all_merch = Post.objects.all()
-        serializers = PostSerializer(all_merch, many=True)
-        return Response(serializers.data)
+# class PostList(APIView):
+#     permission_classes = (IsAdminOrReadOnly,)
+#     def get(self, request, format=None):
+#         all_merch = Post.objects.all()
+#         serializers = PostSerializer(all_merch, many=True)
+#         return Response(serializers.data)
     
-    def post(self, request, format=None):
-        serializers = PostSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, format=None):
+#         serializers = PostSerializer(data=request.data)
+#         if serializers.is_valid():
+#             serializers.save()
+#             return Response(serializers.data, status=status.HTTP_201_CREATED)
+#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class PostDescription(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    def get_merch(self, pk):
-        try:
-            return Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            return Http404
+# class PostDescription(APIView):
+#     permission_classes = (IsAdminOrReadOnly,)
+#     def get_merch(self, pk):
+#         try:
+#             return Post.objects.get(pk=pk)
+#         except Post.DoesNotExist:
+#             return Http404
 
-    def get(self, request, pk, format=None):
-        merch = self.get_merch(pk)
-        serializers = PostSerializer(merch)
-        return Response(serializers.data)
+#     def get(self, request, pk, format=None):
+#         merch = self.get_merch(pk)
+#         serializers = PostSerializer(merch)
+#         return Response(serializers.data)
+    
+    
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
