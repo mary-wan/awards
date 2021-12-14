@@ -12,25 +12,7 @@
             <img class="card-img-top" style="visibility:hidden" width="100%"
                  src="{{ post.photo.url }}-/crop/1440x720/center/-/quality/lightest/" alt="{{photo.title}}">
                 <div class="overlay1">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6 d-flex flex-row mx-auto " style="margin-top:20%">
-                                {% for rating in post.ratings.all %}
-                                {% if forloop.counter is post.ratings.all.count %}
-                                <div id="design">{{ rating.design_average}}<br>
-                                    <span class="descr-rate">design</span>
-                                </div>
-                                <div id="usability" class="mx-auto">{{ rating.usability_average }}<br>
-                                    <span class="descr-rate">usability</span>
-                                </div>
-                                <div id="content">{{ rating.content_average }}<br>
-                                    <span class="descr-rate">content</span>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                            <div class="col-md-3"></div>
-                      </div>
+                        
                 </div>
             </a>
         </div>
@@ -46,6 +28,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8 mt-4">
                     <!-- <h3 class="">Rating Scores</h3> -->
+                   
                     {% for rating in post.ratings.all %}
                     {% if forloop.counter is post.ratings.all.count %}
                     <a class="btn btn-color btn-sm" ><h5>{{ rating.score }}</h5>
@@ -62,6 +45,8 @@
                     </a>
                     {% endif %}
                     {% endfor %}
+   
+                    
                 </div>
                 <div class="col-md-2"></div>
             </div>
